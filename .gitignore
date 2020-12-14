@@ -2,3 +2,11 @@
 *~
 *.vs/
 *Debug/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+git rm --cached Lab02a_MilesPerGallon/Sample_Program/MilesPerGallon.vcxproj -f
+git rm --cached Lab02a_MilesPerGallon/Sample_Program/MilesPerGallon.vcxproj.filters -f
+git rm --cached Lab02a_MilesPerGallon/Sample_Program/MilesPerGallon.vcxproj.user -f
+git rm --cached Lab02a_MilesPerGallon/Sample_Program/MilesPerGallon.sln -f
