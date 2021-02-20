@@ -19,7 +19,6 @@ void printParkingTicket(ParkingTicket* nParkingTicketPtr);
 int main() {
 	string choice = "yes", nOfficerName;
 	double officeBadgeNum;
-	bool isInViolation;
 	PoliceOfficer* nOfficerPtr = NULL;
 	ParkedCar* nParkedCarPtr = NULL;
 	ParkingMeter* nParkingMeterPtr = NULL;
@@ -42,27 +41,29 @@ int main() {
 		// Create new instace of ParkedCar
 		nParkedCarPtr = new ParkedCar;
 		cout << "Vehicle: " << endl
-			<< nParkedCarPtr->getMaker() << endl
-			<< nParkedCarPtr->getModel() << endl
-			<< nParkedCarPtr->getColor() << endl
-			<< nParkedCarPtr->getMinutesParked() << endl;
+			<< "\t" << "Make: " << nParkedCarPtr->getMaker() << endl
+			<< "\t" << "Model: " << nParkedCarPtr->getModel() << endl
+			<< "\t" << "Color: " << nParkedCarPtr->getColor() << endl
+			<< "\t" << "Plate Number: " << nParkedCarPtr->getPlateNum() << endl
+			<< "\t" << "Minutes Parked: " << nParkedCarPtr->getMinutesParked() << endl;
 
 		// Create new instace of ParkingMeter
 		nParkingMeterPtr = new ParkingMeter;
 		cout << "Parking Meter: " << endl
-			<< nParkingMeterPtr->getMinutesPaid() << endl;
+			<< "\t" << "Minutes Paid: " << nParkingMeterPtr->getMinutesPaid() << endl << endl;
 
-		// Have PoliceOfficer inspect Parking Meter
-		isInViolation = nOfficerPtr->parkingMeterInspection(nParkingMeterPtr, nParkedCarPtr);
-
-		if (isInViolation) {
+		if (nOfficerPtr->isInViolation(nParkingMeterPtr, nParkedCarPtr)) {
 			cout << "The parking meter has expired.. Issuing the vehicle a ticket.." << endl << endl;
+			cin.get();
 
 			nParkingTicketPtr = new ParkingTicket(nOfficerPtr, nParkingMeterPtr, nParkedCarPtr);
+			cout << "Printing parking ticket.." << endl << endl;
+			cin.get();
+
 			printParkingTicket(nParkingTicketPtr);
 		}
 
-		cout << "Should officer " << choice << " continue inspecting meters ? [Y/n]";
+		cout << "Should officer " << nOfficerPtr->getOfficerName() << " continue inspecting meters ? [Y/n]";
 		getline(cin, choice); 
 	}
 	cout << "Stopping meter inspection..";
@@ -75,12 +76,13 @@ int main() {
 
 }
 void printBanner() {
-	cout << "\t\t     This program simiulates an officer inspecting parking meeters     "
+	cout << "\t\t     This program simiulates an officer inspecting parking meeters     " << endl
 		 << "\t\t and issuing parking tickets to vehicles that have exceeded their time " << endl << endl;
 }
 void printParkingTicket(ParkingTicket* nParkingTicketPtr) {
 	cout << '\t' << "  Parking Ticket: " << nParkingTicketPtr->getTicketNum() << endl
-		 << '\t' << "  Officer: " << nParkingTicketPtr->getOfficerName() << endl;
+		 << '\t' << "  Officer: " << nParkingTicketPtr->getOfficerName() 
+		 << " #" << nParkingTicketPtr->getOfficerNum() << endl;
 
 	cout << "Vehicle: " << endl
 		<< '\t' << "  Make: " << nParkingTicketPtr->getOffenderMaker() << endl

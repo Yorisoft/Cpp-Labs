@@ -1,13 +1,12 @@
 #ifndef PARKED_CAR
 #define PARKED_CAR
-#include<string>
+
 using namespace std;
 
 class ParkedCar {
 private:
 	int minutesParked;
-	string maker, model, color;
-	long int plateNum;
+	string maker, model, color, plateNum;
 
 public:
 	ParkedCar();
@@ -22,7 +21,7 @@ public:
 	string getMaker();
 	string getModel();
 	string getColor();
-	long int getPlateNum();
+	string getPlateNum();
 };
 
 #endif

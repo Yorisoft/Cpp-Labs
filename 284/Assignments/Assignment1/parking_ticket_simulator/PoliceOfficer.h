@@ -3,6 +3,7 @@
 #define POLICE_OFFICER
 
 #include<string>
+
 #include "ParkedCar.h"
 #include "ParkingMeter.h"
 
@@ -27,6 +28,6 @@ public:
 	string getOfficerName();
 
 	//extra
-	bool parkingMeterInspection(ParkingMeter* nMeter, ParkedCar* nCar);
+	bool isInViolation(ParkingMeter* nMeter, ParkedCar* nCar);
 };
 #endif

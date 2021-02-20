@@ -1,6 +1,8 @@
 /// This is the implementation file for PoliceOfficer class
 
 #include<string>
+
+#include <random>
 #include "ParkedCar.h"
 #include "PoliceOfficer.h"
 #include "ParkingMeter.h";
@@ -19,7 +21,7 @@ PoliceOfficer::PoliceOfficer(string name) {
 
 //setters
 void PoliceOfficer::setOfficerNum() {
-	officerNum =  (rand() % 1000*1.0 + 9999);
+	officerNum =  rand() % 5000 + 4999;
 }
 void PoliceOfficer::setOfficerName(string name) {
 	officerName = name;
@@ -33,7 +35,7 @@ string PoliceOfficer::getOfficerName() {
 	return officerName;
 }
 
-bool PoliceOfficer::parkingMeterInspection(ParkingMeter* nMeter, ParkedCar* nCar) {
+bool PoliceOfficer::isInViolation(ParkingMeter* nMeter, ParkedCar* nCar) {
 	if (nCar->getMinutesParked() > nMeter->getMinutesPaid()) {
 		return true;
 	}

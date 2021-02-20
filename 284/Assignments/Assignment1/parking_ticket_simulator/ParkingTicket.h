@@ -8,15 +8,12 @@
 #include "ParkedCar.h"
 using namespace std;
 
-
-
 class ParkingTicket {
 private:
 	static int lastTicketNum;
 
 	struct vehicle {
-		string maker, model, color;
-		long int plateNum;
+		string maker, model, color, plateNum;
 		double minutesPaid, minutesParked;
 	};
 
@@ -26,7 +23,6 @@ private:
 
 public:
 	//constructor
-	ParkingTicket();
 	ParkingTicket(PoliceOfficer* nOfficer, ParkingMeter *nMeter, ParkedCar* offender);
 
 	//setters
@@ -36,7 +32,7 @@ public:
 	void setOffenderMaker(vehicle* offenderPtr, string maker);
 	void setOffenderModel(vehicle* offenderPtr, string model);
 	void setOffenderColor(vehicle* offenderPtr, string color);
-	void setOffenderPlateNum(vehicle* offenderPtr, long int plateNum);
+	void setOffenderPlateNum(vehicle* offenderPtr, string plateNum);
 	void setOffenderMinutesPaid(vehicle* offenderPtr, double minPaid);
 	void setOffenderMinutesParked(vehicle* offenderPtr, int minParked);
 
@@ -48,7 +44,7 @@ public:
 	string getOffenderMaker();
 	string getOffenderModel();
 	string getOffenderColor();
-	long int getOffenderPlateNum();
+	string getOffenderPlateNum();
 	double getOffenderMinutesPaid();
 	double getOffenderMinutesParked();
 };

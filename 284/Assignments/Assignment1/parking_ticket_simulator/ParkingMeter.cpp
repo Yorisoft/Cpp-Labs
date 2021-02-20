@@ -1,4 +1,6 @@
 #include<cstdlib>
+#include <random>
+#include<string>
 
 #include "ParkingMeter.h"
 using namespace std;
@@ -8,9 +10,9 @@ ParkingMeter::ParkingMeter() {
 }
 
 void ParkingMeter::setMinutesPaid() {
-	minutesPaid = (rand() % 1*1.0 + 240);
+	minutesPaid = rand() % 240 + 30;
 }
 
-double ParkingMeter::getMinutesPaid() {
+long int ParkingMeter::getMinutesPaid() {
 	return minutesPaid;
 }

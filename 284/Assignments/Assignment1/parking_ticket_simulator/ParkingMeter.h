@@ -1,11 +1,11 @@
 #ifndef PARKING_METER
 #define PARKING_METER
-#include<string>
+
 using namespace std;
 
 class ParkingMeter {
 private:
-	double minutesPaid;
+	long int minutesPaid;
 
 public: 
 	//constructor 
@@ -15,7 +15,7 @@ public:
 	void setMinutesPaid();
 
 	//getter
-	double getMinutesPaid();
+	long int getMinutesPaid();
 };
 
 #endif
