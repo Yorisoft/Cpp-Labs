@@ -1,0 +1,11 @@
+	Parking Ticket #400400
+      Office: J. Doe, #10001
+Vehicle:
+	Make:
+	Model:
+	color:
+	plateNum:
+Fine:
+	Paid For:
+	Exeeded by:
+	Total:
