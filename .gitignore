@@ -1,6 +1,5 @@
 *.[oa]
-*~
-*.idea/
+*.idea
 *.vs/
 *Debug/
 *Release/
@@ -11,5 +10,3 @@
 *Syllabus.pdf
 284/Group_Project/BankAccounts/cmake-build-debug
 284/Group_Project/BankAccounts/.idea
-cmake-build-debug/**
-hnet.com-image.ico
