@@ -10,15 +10,17 @@ workspace "testProject"
 project "BankAccounts"
    location "testProject"
    kind "ConsoleApp"
-   language "C++11"
+   language "C++"
    targetdir "bin/%{cfg.buildcfg}"
 
    files { "**.h", "**.cpp" }
 
    filter "configurations:Debug"
+      cppdialect "C++11"
       defines { "DEBUG" }
       symbols "On"
 
    filter "configurations:Release"
+      cppdialect "C++11"
       defines { "NDEBUG" }
       optimize "On"
