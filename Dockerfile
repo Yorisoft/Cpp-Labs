@@ -12,7 +12,8 @@ WORKDIR /usr/src/app
 
 COPY . ./
 # update, install dependencies
-RUN apt-get install update sudo -y \
+RUN apt-get update -y \
+    && apt-get install -y sudo \
     && sudo apt-get install gcc g++ make ca-certificates wget \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && sudo apt-get install -y nodejs \
