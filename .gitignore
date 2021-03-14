@@ -10,3 +10,12 @@
 *Syllabus.pdf
 284/Group_Project/BankAccounts/cmake-build-debug
 284/Group_Project/BankAccounts/.idea
+284/**
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/  
