@@ -2,15 +2,15 @@
 workspace "testProject"
    configurations { "Debug", "Release" }
 
-dialect { 
+--[[ dialect { 
    ['C'] = 'C99', 
    ['C++'] = 'C++11' 
-}
+} ]]
 
 project "BankAccounts"
    location "testProject"
    kind "ConsoleApp"
-   language "C++"
+   language "C++11"
    targetdir "bin/%{cfg.buildcfg}"
 
    files { "**.h", "**.cpp" }
