@@ -1,19 +1,5 @@
 #!/usr/bin/env groovy
 
-properties([
-    gitLabConnection('http://jenkins.example.com:8080/project/GitLabTrigger'),
-    pipelineTriggers([
-        [
-            $class: 'GitLabPushTrigger',
-            branchFilterType: 'All',
-            triggerOnPush: true,
-            triggerOnMergeRequest: false,
-            ciSkip: true,
-            secretToken: project_token
-        ]
-    ])
-])
-
 node {
     if(env.BRANCH_NAME.startsWith('PR')){
         return;
