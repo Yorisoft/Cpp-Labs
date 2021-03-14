@@ -13,8 +13,6 @@ project "BankAccounts"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
 
-   
-
    files { "**.h", "**.cpp" }
 
    filter "configurations:Debug"
