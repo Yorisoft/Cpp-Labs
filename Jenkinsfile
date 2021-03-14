@@ -57,6 +57,7 @@ node {
                 echo ('Done building project files.. ');
             } 
         }
+    }
         
     catch (e) {
         currentBuild.result = 'FAILURE';
