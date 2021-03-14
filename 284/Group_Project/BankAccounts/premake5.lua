@@ -8,6 +8,11 @@ project "BankAccounts"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
 
+   dialect { 
+      ['C'] = 'C99', 
+      ['C++'] = 'C++11' 
+  }
+
    files { "**.h", "**.cpp" }
 
    filter "configurations:Debug"
