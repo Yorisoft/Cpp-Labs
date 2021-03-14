@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/CheckingAccount.h
+GenericAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.h
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.cpp
+GenericAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.h
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.h
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/InactiveAccount.h
+string
+-
+iostream
+-
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/SavingsAccount.h
+GenericAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.h
+
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/main.cpp
+iostream
+-
+string
+-
+SavingsAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/SavingsAccount.h
+CheckingAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/CheckingAccount.h
+InactiveAccount.h
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/InactiveAccount.h
+GenericAccount.cpp
+/home/yelsin/Documents/code/my-github/cpp-labs/284/Group Project/BankAccounts/GenericAccount.cpp
+

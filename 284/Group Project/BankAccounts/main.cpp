@@ -94,7 +94,7 @@ int main() {
         getline(cin, choice);
     }
 
-    system("pause");
+    system("PAUSE");
     return 0;
 }
 
@@ -114,11 +114,11 @@ void printInterface() {
 
 int getValidTransaction() {
     int usrInput;
-    cin >> usrInput;
 
     cout << "What transaction would you like to perform ? (1 - 5) ";
+    cin >> usrInput;
 
-    while ((!isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
+    while ((isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
         cout << "Please enter an integer 1 - 5:";
         cin >> usrInput;
     }
