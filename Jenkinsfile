@@ -1,5 +1,14 @@
 #!/usr/bin/env groovy
 
+properties([[
+    $class: 'GitLabConnectionProperty',
+    gitLabConnection: 'Gitlab'
+    ],
+    pipelineTriggers([[
+        $class: 'GitLabPushTrigger', branchFilterType: 'NameBasedFilter',
+        triggerOnPush: true, includeBranchesSpec : '**', excludeBranchesSpec: '' 
+    ]])])
+
 node {
     if(env.BRANCH_NAME.startsWith('PR')){
         return;
