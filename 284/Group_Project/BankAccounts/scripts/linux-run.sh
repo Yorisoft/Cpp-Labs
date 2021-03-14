@@ -1,3 +1,4 @@
 #!/bin/bash
 
-./bin/Debug/BankAccounts
+cd ..
+bin/Debug/BankAccounts
