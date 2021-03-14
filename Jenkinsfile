@@ -27,7 +27,7 @@ node {
         stage('Building BankAccounts') {
             image.inside("--entrypoint=''") {
                 sh ("chmod +x 284/Group_Project/BankAccounts/scripts/linux-build.sh");
-                sh ('284/Group Project/BankAccounts/scripts/linux-build.sh');
+                sh ('284/Group_Project/BankAccounts/scripts/linux-build.sh');
                 echo ('Done building project files.. ');
             } 
         } 
@@ -35,7 +35,7 @@ node {
         stage('Running BankAccounts') {
             image.inside("--entrypoint=''") {
                 sh ("chmod +x 284/Group_Project/BankAccounts/scripts/linux-run.sh");
-                sh ('284/Group Project/BankAccounts/scripts/linux-run.sh');
+                sh ('284/Group_Project/BankAccounts/scripts/linux-run.sh');
                 echo ('Done building project files.. ');
             } 
         }
