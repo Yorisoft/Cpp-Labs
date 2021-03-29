@@ -95,7 +95,7 @@ bool GenericAccount<T>::isActive() {
 template<class T>
 void GenericAccount<T>::deposit(T nDeposit) {
     balance += nDeposit;
-    numOfDeposits++;
+    numOfDeposits+=1;
 }
 
 template<class T>
