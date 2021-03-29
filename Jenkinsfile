@@ -47,7 +47,7 @@ node {
     } 
     finally {
         stage('Create Archive'){
-            archiveArtifacts allowEmptyArchive: true, artifacts: 'bin/Debug/*', fingerprint: true; 
+            archiveArtifacts allowEmptyArchive: true, artifacts: '284/Group_Project/BankAccounts/bin/Debug/*', fingerprint: true; 
             //archiveArtifacts allowEmptyArchive: true, artifacts: 'record/screen_shots/newegg/*.png, record/screen_shots/bestbuy/*.png, record/screen_shots/target/*.png'; 
         }
         
