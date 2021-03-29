@@ -14,11 +14,7 @@ COPY . ./
 # update, install dependencies
 RUN apt-get update -y \
     && apt-get install -y sudo \
-    && sudo apt-get install -y gcc g++ make ca-certificates wget \
-    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && sudo apt-get install -y nodejs \
-    && sudo apt-get -y autoremove
-
+    && sudo apt-get install -y gcc g++ make ca-certificates wget 
 
 RUN whoami \
 	&& useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo \
