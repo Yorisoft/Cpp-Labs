@@ -39,24 +39,6 @@ node {
                 echo ('Done building project files.. ');
             } 
         }
-
-        stage('Testing BankAccounts') {
-            image.inside("--entrypoint=''") {
-                sh ('1000.00');
-                sh ('1000.00');
-                sh ('0.50');
-                sh ('1');
-                sh ('152.50');
-                sh ('y');
-                sh ('1');
-                sh ('152.50');
-                sh ('y');
-                sh ('5');
-                sh ('1');
-                sh ('n');
-                echo ('Done building project files.. ');
-            } 
-        }
     }
         
     catch (e) {
