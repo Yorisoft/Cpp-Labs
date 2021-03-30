@@ -18,7 +18,7 @@ using namespace std;
 
 void printBanner();
 void printInterface();
-int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int counter);
+int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int &counter);
 void savingDeposit(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
 void savingWithdrawal(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
 void checkingDeposit(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
@@ -152,7 +152,7 @@ void printInterface() {
          << '\t' << "5. Print out End-Of-Month review message " << endl << endl;
 }
 
-int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int counter) {
+int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int &counter) {
     int usrInput;
 
     // Checking Deposit fee workflow
