@@ -6,14 +6,13 @@
 } ]]
 workspace "testProject"
    configurations { "deposit-fees-test", "Debug", "Release" }
-   
+
 project "BankAccounts"
    location "testProject"
    kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    files { "**.h", "**.cpp" }
-   
 
    filter {"configurations:Debug"}
       excludes "checking-account-deposit-fees.test.cpp"
