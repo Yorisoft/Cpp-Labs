@@ -1,6 +1,6 @@
 -- premake5.lua
 workspace "testProject"
-   configurations { "deposit-fees-test", "Debug", "Release" }
+   configurations { "Debug", "Release", "deposit-fees-test" }
 
 --[[ dialect { 
    ['C'] = 'C99', 
