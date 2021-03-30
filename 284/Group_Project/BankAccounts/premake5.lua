@@ -1,19 +1,19 @@
 -- premake5.lua
-workspace "testProject"
 
 --[[ dialect { 
    ['C'] = 'C99', 
    ['C++'] = 'C++11' 
 } ]]
-
+workspace "testProject"
+   configurations { "deposit-fees-test", "Debug", "Release" }
+   
 project "BankAccounts"
    location "testProject"
    kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    files { "**.h", "**.cpp" }
-
-   configurations { "deposit-fees-test", "Debug", "Release" }
+   
 
    filter {"configurations:Debug"}
       excludes "checking-account-deposit-fees.test.cpp"
