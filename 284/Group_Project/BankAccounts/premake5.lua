@@ -1,11 +1,11 @@
 -- premake5.lua
+workspace "testProject"
+   configurations { "deposit-fees-test", "Debug", "Release" }
 
 --[[ dialect { 
    ['C'] = 'C99', 
    ['C++'] = 'C++11' 
 } ]]
-workspace "testProject"
-   configurations { "deposit-fees-test", "Debug", "Release" }
 
 project "BankAccounts"
    location "testProject"
