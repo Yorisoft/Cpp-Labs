@@ -122,7 +122,7 @@ int main() {
             cin.ignore(100, '\n');
             getline(cin, choice);
         } else {
-            counter >= 7 ? choice = 'N' : choice = TestHelperPtr->getTestUserChoice();
+            counter >= 6 ? choice = 'N' : 'Y';
             counter++;
         }
     }
