@@ -8,6 +8,7 @@
 #include<iostream>
 #include<string>
 #include <iomanip>
+#include<vector>
 #include "TestHelper.h"
 #include "SavingsAccount.h"
 #include "CheckingAccount.h"
@@ -156,7 +157,7 @@ int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int coun
     int usrInput;
 
     // Checking Deposit fee workflow
-    vector<int> workflowChoices = [1, 1, 1, 1, 2, 2, 5];
+    vector<int> workflowChoices = {1, 1, 1, 1, 2, 2, 5};
     
     cout << "What transaction would you like to perform ? (1 - 5) ";
     if (ENV_VARIABLE != "jenkins"){
