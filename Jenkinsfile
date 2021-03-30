@@ -6,6 +6,7 @@ node {
     }
 
     def image
+    def entrypoint = "-d";
     try{
         stage('Cleanup and Checkout') {
             sh ("echo Branch_name:${env.BRANCH_NAME}");
@@ -25,18 +26,18 @@ node {
         }
 
         stage('Building BankAccounts') {
-            image.inside("--entrypoint=''") {
-                sh ("chmod +x 284/Group_Project/BankAccounts/scripts/linux-build.sh");
-                sh ('284/Group_Project/BankAccounts/scripts/linux-build.sh');
-                echo ('Done building project files.. ');
+            image.inside(entrypoint) {
+                sh ("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh");
+                sh ('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh');
+                echo ('Done building BankAccounts project files.. config=deposit-fees-test');
             } 
         } 
 
         stage('Running BankAccounts') {
-            image.inside("--entrypoint=''") {
-                sh ("chmod +x 284/Group_Project/BankAccounts/scripts/linux-run.sh");
-                sh ('284/Group_Project/BankAccounts/scripts/linux-run.sh');
-                echo ('Done building project files.. ');
+            image.inside(entrypoint) {
+                sh ("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh");
+                sh ('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh');
+                echo ('Done running BankAccounts project.. config=deposit-fees-test');
             } 
         }
     }
@@ -48,7 +49,6 @@ node {
     finally {
         stage('Create Archive'){
             archiveArtifacts allowEmptyArchive: true, artifacts: '284/Group_Project/BankAccounts/bin/**', fingerprint: true; 
-            //archiveArtifacts allowEmptyArchive: true, artifacts: 'record/screen_shots/newegg/*.png, record/screen_shots/bestbuy/*.png, record/screen_shots/target/*.png'; 
         }
         
         stage('cleanup'){

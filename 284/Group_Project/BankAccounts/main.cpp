@@ -8,7 +8,6 @@
 #include<iostream>
 #include<string>
 #include <iomanip>
-#include "TestHelper.h"
 #include "SavingsAccount.h"
 #include "CheckingAccount.h"
 #include "InactiveAccount.h"
@@ -17,20 +16,15 @@ using namespace std;
 
 void printBanner();
 void printInterface();
-int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr);
-void savingDeposit(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
-void savingWithdrawal(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
-void checkingDeposit(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
-void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr);
+int getValidTransaction();
+void savingDeposit(SavingsAccount *nSavingsAccountPtr);
+void savingWithdrawal(SavingsAccount *nSavingsAccountPtr);
+void checkingDeposit(CheckingAccount *nCheckingAccountPtr);
+void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr);
 void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavingsAccountPtr,
-                     long double &startingCheckingBalance, long double &startingSavingBalance,
-                     string ENV_VARIABLE, TestHelper* TestHelperPtr);
+                     long double &startingCheckingBalance, long double &startingSavingBalance);
 
 int main() {
-    // TEST VARIABLES
-    const string ENV_VARIABLE = getenv("CPP_TEST_ENV");
-    auto *TestHelperPtr = new TestHelper();
-
     // VARIABLES
     string choice = "yes";
     int transaction;
@@ -43,32 +37,17 @@ int main() {
 
     // COLLECT USER STARTING CHECKING BALANCE
     cout << "What would you like as your starting balance for your Checking account ?? "
-            "( Minimum of $25 to activate account)  ";
-    if (ENV_VARIABLE != "jenkins"){
-        cin >> startingCheckingBalance;
-        cin.ignore(100, '\n');
-    } else {
-        startingCheckingBalance = TestHelperPtr->getStatingBalance();
-    }
+        "( Minimum of $25 to activate account)  ";
+    cin >> startingCheckingBalance; cin.ignore(100, '\n');
 
     // COLLECT USER STARTING SAVING BALANCE
     cout << "What would you like as your starting balance for your Savings account ?? "
-            "( Minimum of $25 to activate account)  ";
-    if (ENV_VARIABLE != "jenkins"){
-        cin >> startingSavingBalance;
-        cin.ignore(100, '\n');
-    } else {
-        startingSavingBalance = TestHelperPtr->getStatingBalance();
-    }
+        "( Minimum of $25 to activate account)  ";
+    cin >> startingSavingBalance; cin.ignore(100, '\n');
 
     // COLLECT USER APR VALUE
     cout << "What is the annual interest rate for your Savings account?? ";
-    if (ENV_VARIABLE != "jenkins"){
-        cin >> APR;
-        cin.ignore(100, '\n');
-    } else {
-        APR = TestHelperPtr->getAPR();
-    }
+    cin >> APR; cin.ignore(100, '\n');
 
     // Initializing new checking and savings account object
     CheckingAccountPtr = new CheckingAccount(startingCheckingBalance, APR);
@@ -77,32 +56,31 @@ int main() {
     while (choice[0] == 'y' || choice[0] == 'Y') {
         try {
             printInterface();
-            transaction = getValidTransaction(ENV_VARIABLE, TestHelperPtr);
+            transaction = getValidTransaction();
 
             switch (transaction) {
                 case 1:
-                    checkingDeposit(CheckingAccountPtr, ENV_VARIABLE, TestHelperPtr);
+                    checkingDeposit(CheckingAccountPtr);
                     cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
                          << endl << endl;
                     break;
                 case 2:
-                    checkingWithdrawal(CheckingAccountPtr, ENV_VARIABLE, TestHelperPtr);
+                    checkingWithdrawal(CheckingAccountPtr);
                     cout << "New Checking Balance: " << CheckingAccountPtr->GenericAccount<long double>::getBalance()
                          << endl << endl;
                     break;
                 case 3:
-                    savingDeposit(SavingsAccountPtr, ENV_VARIABLE, TestHelperPtr);
+                    savingDeposit(SavingsAccountPtr);
                     cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
                          << endl << endl;
                     break;
                 case 4:
-                    savingWithdrawal(SavingsAccountPtr, ENV_VARIABLE, TestHelperPtr);
+                    savingWithdrawal(SavingsAccountPtr);
                     cout << "New Saving Balance: " << SavingsAccountPtr->GenericAccount<long double>::getBalance()
                          << endl << endl;
                     break;
                 case 5:
-                    printEndOfMonth(CheckingAccountPtr, SavingsAccountPtr, startingCheckingBalance,
-                                    startingSavingBalance, ENV_VARIABLE, TestHelperPtr);
+                    printEndOfMonth(CheckingAccountPtr, SavingsAccountPtr, startingCheckingBalance);
                     break;
                 default:
                     cout << "Invalid selection.. Try again.." << endl << endl;
@@ -115,25 +93,16 @@ int main() {
         }
 
         cout << "Would you like to enter another transaction ? [Y/n] ";
-        if (ENV_VARIABLE != "jenkins"){
-            cin.ignore(100, '\n');
-            getline(cin, choice);
-        } else {
-            choice = TestHelperPtr->getTestUserChoice();
-        }
-
+        cin.ignore(100, '\n');
+        getline(cin, choice);
     }
 
     delete CheckingAccountPtr;
     delete SavingsAccountPtr;
     delete TestHelperPtr;
 
-    if (ENV_VARIABLE != "jenkins"){
-        system("PAUSE");
-        return 0;
-    } else {
-        return 0;
-    }
+    system("PAUSE");
+    return 0;
 }
 
 void printBanner() {
@@ -150,15 +119,11 @@ void printInterface() {
          << '\t' << "5. Print out End-Of-Month review message " << endl << endl;
 }
 
-int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+int getValidTransaction() {
     int usrInput;
 
     cout << "What transaction would you like to perform ? (1 - 5) ";
-    if (ENV_VARIABLE != "jenkins"){
-        cin >> usrInput;
-    } else {
-        usrInput = TestHelperPtr->getNextTransaction();
-    }
+    cin >> usrInput; cin.ignore(100, '\n');
 
     while ((isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
         cout << "Please enter an integer 1 - 5:";
@@ -167,31 +132,22 @@ int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr) {
     return usrInput;
 }
 
-void checkingDeposit(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+void checkingDeposit(CheckingAccount *nCheckingAccountPtr) {
     long double newDeposit;
 
     cout << "How much would you like to deposit into your checking account ? ";
-
-    if (ENV_VARIABLE != "jenkins"){
-        cin >> newDeposit;
-    } else {
-        newDeposit = TestHelperPtr->getNewDeposit();
-    }
+    cin >> newDeposit; cin.ignore(100, '\n');
 
     nCheckingAccountPtr->GenericAccount<long double>::deposit(newDeposit);
     cout << "Finished transaction.." << endl;
 }
 
-void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr) {
     long double newWithdrawal;
 
     try {
         cout << "How much would you like to withdraw from your checking account ? ";
-        if (ENV_VARIABLE != "jenkins"){
-            cin >> newWithdrawal;
-        } else {
-            newWithdrawal = TestHelperPtr->getNewWithdrawal();
-        }
+        cin >> newWithdrawal; 
 
         nCheckingAccountPtr->withdraw(newWithdrawal);
         cout << "Finished transaction.." << endl;
@@ -202,17 +158,12 @@ void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABL
 
 }
 
-void savingDeposit(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+void savingDeposit(SavingsAccount *nSavingsAccountPtr) {
     long double newDeposit;
 
     try {
         cout << "How much would you like to deposit into your savings account ? ";
-
-        if (ENV_VARIABLE != "jenkins"){
-            cin >> newDeposit;
-        } else {
-            newDeposit = TestHelperPtr->getNewDeposit();
-        }
+        cin >> newDeposit; cin.ignore(100, '\n');
 
         nSavingsAccountPtr->deposit(newDeposit);
         cout << "Finished transaction.." << endl;
@@ -222,16 +173,12 @@ void savingDeposit(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, Test
     }
 }
 
-void savingWithdrawal(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+void savingWithdrawal(SavingsAccount *nSavingsAccountPtr) {
     long double newWithdrawal;
 
     try {
         cout << "How much would you like to withdraw from your savings account ? ";
-        if (ENV_VARIABLE != "jenkins"){
-            cin >> newWithdrawal;
-        } else {
-            newWithdrawal = TestHelperPtr->getNewWithdrawal();
-        }
+        cin >> newWithdrawal; cin.ignore(100, '\n');
 
         nSavingsAccountPtr->withdraw(newWithdrawal);
         cout << "Finished transaction.." << endl;
@@ -242,20 +189,14 @@ void savingWithdrawal(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, T
 }
 
 void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavingsAccountPtr,
-                     long double &startingCheckingBalance, long double &startingSavingBalance,
-                     string ENV_VARIABLE, TestHelper* TestHelperPtr) {
+                     long double &startingCheckingBalance, long double &startingSavingBalance) {
     cout << setprecision(2) << fixed;
     int accountChosen;
 
     cout << "What account would you like to print?" << endl
          << "1. Checking " << endl
          << "2. Savings " << endl;
-
-    if (ENV_VARIABLE != "jenkins") {
-        cin >> accountChosen; cin.ignore(100, '\n');
-    } else {
-        accountChosen = TestHelperPtr->getAccountToPrint();
-    }
+    cin >> accountChosen; cin.ignore(100, '\n');
 
     if (accountChosen == 1) {
         // Checking
