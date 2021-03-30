@@ -122,12 +122,8 @@ int main() {
             cin.ignore(100, '\n');
             getline(cin, choice);
         } else {
-            if(counter >= 6){
-             choice = 'N';   
-            }
-            choice = TestHelperPtr->getTestUserChoice();
+            counter >= 7 ?  choice = 'N' : choice = TestHelperPtr->getTestUserChoice();
         }
-
     }
 
     delete CheckingAccountPtr;
