@@ -15,13 +15,13 @@ project "BankAccounts"
    files { "**.h", "**.cpp" }
 
    filter {"configurations:Debug"}
-      excludes "checking-account-deposit-fees.test.cpp"
+      excludes "**.test.cpp"
       cppdialect "C++11"
       defines { "DEBUG" }
       symbols "On"
 
    filter {"configurations:Release"}
-      excludes "checking-account-deposit-fees.test.cpp"
+      excludes "**.test.cpp"
       cppdialect "C++11"
       defines { "NDEBUG" }
       optimize "On"
