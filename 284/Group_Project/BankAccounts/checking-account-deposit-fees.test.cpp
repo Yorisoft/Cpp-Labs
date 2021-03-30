@@ -118,11 +118,12 @@ int main() {
         }
 
         cout << "Would you like to enter another transaction ? [Y/n] ";
-        if (ENV_VARIABLE != "jenkins"){
+        if (ENV_VARIABLE != "jenkins") {
             cin.ignore(100, '\n');
             getline(cin, choice);
         } else {
-            counter >= 7 ?  choice = 'N' : choice = TestHelperPtr->getTestUserChoice();
+            counter >= 7 ? choice = 'N' : choice = TestHelperPtr->getTestUserChoice();
+            counter++;
         }
     }
 
@@ -163,7 +164,6 @@ int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int &cou
         cin >> usrInput;
     } else {
         usrInput = workflowChoices[counter];
-        counter++;
     }
 
     while ((isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
