@@ -122,6 +122,9 @@ int main() {
             cin.ignore(100, '\n');
             getline(cin, choice);
         } else {
+            if(counter >= 6){
+             choice = 'N';   
+            }
             choice = TestHelperPtr->getTestUserChoice();
         }
 
