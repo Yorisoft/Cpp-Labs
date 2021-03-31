@@ -262,7 +262,7 @@ void printEndOfMonth(CheckingAccount *nCheckingAccountPtr, SavingsAccount *nSavi
     if (ENV_VARIABLE != "jenkins") {
         cin >> accountChosen; cin.ignore(100, '\n');
     } else {
-        accountChosen = TestHelperPtr->getAccountToPrint();
+        accountChosen = 2;
     }
 
     if (accountChosen == 1) {
