@@ -16,31 +16,36 @@ CheckingAccount::CheckingAccount(long double nBalance, double nAnnualInterest)
 // Extra
 void CheckingAccount::withdraw(long double nWithdraw) {
 
-    long double tempBalance = GenericAccount<long double>::getBalance();
+    long double tempBalance = this->GenericAccount<long double>::getBalance();
 
-    if (GenericAccount<bool>::isActive() && ((tempBalance - nWithdraw) >= 0)) {
-        GenericAccount<long double>::withdraw(nWithdraw);
+    if (this->GenericAccount<long double>::isActive() && ((tempBalance - nWithdraw) >= 0)) {
+        this->GenericAccount<long double>::withdraw(nWithdraw);
+        this->GenericAccount<int>::setNumOfWithdrawals(this->GenericAccount<int>::getNumOfWithdrawals() + 1);
     } else if ((tempBalance - nWithdraw) < 0) {
         cout << "Account was overcharged.. Withdrawal was canceled.." << endl << endl
              << "Account will be charged $15 for the overcharge.." << endl << endl;
 
-        GenericAccount<long double>::setBalance((tempBalance - 15));
+        this->GenericAccount<long double>::setBalance((tempBalance - 15));
 
-        GenericAccount<int>::setNumOfWithdrawals((GenericAccount<int>::getNumOfWithdrawals() + 1));
-        GenericAccount<int>::setMonthlyOverdraft((GenericAccount<int>::getMonthlyOverdraft() + 15));
-    } else {
+        this->GenericAccount<int>::setNumOfWithdrawals((this->GenericAccount<int>::getNumOfWithdrawals() + 1));
+        this->GenericAccount<int>::setMonthlyOverdraft((this->GenericAccount<int>::getMonthlyOverdraft() + 15));
         throw InactiveAccount();
     }
 }
 
-void CheckingAccount::monthlyProc() {
-    int numOfDeposits = GenericAccount<int>::getNumOfDeposits();
+void CheckingAccount::deposit(long double nDeposit){
+    this->GenericAccount<long double>::deposit(nDeposit);
+    this->GenericAccount<int>::setNumOfDeposits(this->GenericAccount<int>::getNumOfDeposits() + 1);
+}
 
-    GenericAccount<double>::setServiceCharge((GenericAccount<double>::getServiceCharge() + 5));
+void CheckingAccount::monthlyProc() {
+    int numOfDeposits = this->GenericAccount<int>::getNumOfDeposits();
+
+    this->GenericAccount<double>::setServiceCharge((this->GenericAccount<double>::getServiceCharge() + 5));
     if (numOfDeposits > 4) {
         for (int y = 0; y < numOfDeposits; y++) {
-            GenericAccount<double>::setServiceCharge(GenericAccount<double>::getServiceCharge() + 0.10);
+            this->GenericAccount<double>::setServiceCharge(this->GenericAccount<double>::getServiceCharge() + 0.10);
         }
     }
-    GenericAccount<long int>::monthlyProc();
+    this->GenericAccount<long double>::monthlyProc();
 }

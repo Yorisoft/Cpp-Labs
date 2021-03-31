@@ -1,7 +1,6 @@
 // This is the implementation file for GenericAccount.h class
 
 #include "GenericAccount.h"
-
 using namespace std;
 
 // Constructors
@@ -23,9 +22,10 @@ GenericAccount<T>::GenericAccount(T nBalance, T APR)
         : serviceCharge(0), monthlyOverdraft(0), numOfWithdrawals(0),
           numOfDeposits(0) {
 
-    this->setBalance(nBalance);
-    this->setAnnualInterestRate(APR);
-    accountStatus = this->isActive();
+    setBalance(nBalance);
+    setAnnualInterestRate(APR);
+    accountStatus = isActive();
+
 }
 
 // Setters
@@ -47,6 +47,11 @@ void GenericAccount<T>::setServiceCharge(T nServiceCharge) {
 template<class T>
 void GenericAccount<T>::setMonthlyOverdraft(T overdraftAmount) {
     monthlyOverdraft = overdraftAmount;
+}
+
+template<class T>
+void GenericAccount<T>::setNumOfDeposits(T nNum) {
+    numOfDeposits = nNum;
 }
 
 template<class T>
@@ -95,13 +100,11 @@ bool GenericAccount<T>::isActive() {
 template<class T>
 void GenericAccount<T>::deposit(T nDeposit) {
     balance += nDeposit;
-    numOfDeposits++;
 }
 
 template<class T>
 void GenericAccount<T>::withdraw(T nWithdraw) {
     balance -= nWithdraw;
-    numOfWithdrawals++;
 }
 
 template<class T>
@@ -114,8 +117,7 @@ void GenericAccount<T>::calcInt() {
 template<class T>
 void GenericAccount<T>::monthlyProc() {
     balance -= serviceCharge;
-    balance -= serviceCharge;
-    this->calcInt();
+    calcInt();
     numOfDeposits = 0;
     numOfWithdrawals = 0;
     monthlyOverdraft = 0;
