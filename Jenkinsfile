@@ -7,7 +7,7 @@ node {
 
     def image
     def entrypoint = "-d";
-    def currentStage;
+    def currentStage
     try {
         stage('Cleanup and Checkout') {
             sh("echo Branch_name:${env.BRANCH_NAME}");
@@ -27,17 +27,15 @@ node {
         }
 
         parallel(
-            currentStage = 'Building BankAccounts config=deposit-fees-test'
-            stage(currentStage) {
+            'Building BankAccounts config=deposit-fees-test': {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh');
                     echo('Done building BankAccounts project files.. config=deposit-fees-test');
                 } 
             } 
-
-            currentStage = 'Building BankAccounts config=saving-withdrawal-fees-test'
-            stage(currentStage) {
+ 
+            'Building BankAccounts config=saving-withdrawal-fees-test': {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh');
@@ -47,8 +45,7 @@ node {
         )
 
         parallel(
-            currentStage = 'Running BankAccounts config=deposit-fees-test'
-            stage(currentStage) {
+            'Running BankAccounts config=deposit-fees-test': {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh');
@@ -56,8 +53,7 @@ node {
                 }
             }
 
-            currentStage = 'Running BankAccounts config=saving-withdrawal-fees-test'
-            stage(currentStage) {
+            'Running BankAccounts config=saving-withdrawal-fees-test': {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh');
