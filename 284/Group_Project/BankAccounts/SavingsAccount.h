@@ -20,10 +20,10 @@ public:
     //getters
 
 
-//extra
-    void withdraw(long double nWithdrawal);  //override;
-    void deposit(long double nDeposit); // override;
-    void monthlyProc();  //override;
+    //extra
+    void withdraw(long double nWithdrawal);  //;
+    void deposit(long double nDeposit); // ;
+    void monthlyProc();  //;
 
 };
 

@@ -1,6 +1,6 @@
 -- premake5.lua
 workspace "testProject"
-   configurations { "Debug", "Release", "deposit-fees-test" }
+   configurations { "Debug", "Release", "deposit-fees-test, saving-withdrawal-fees-test" }
 
 --[[ dialect { 
    ['C'] = 'C99', 
@@ -27,7 +27,13 @@ project "BankAccounts"
       optimize "On"
 
    filter {"configurations:deposit-fees-test"}
-      excludes "main.cpp"
+      excludes {"main.cpp", "saving-account-withdrawal-fees.test.cpp"}
+      cppdialect "C++11"
+      defines { "NDEBUG" }
+      optimize "On"
+
+   filter {"configurations:saving-withdrawal-fees-test"}
+      excludes {"main.cpp", "checking-account-deposit-fees.test.cpp"}
       cppdialect "C++11"
       defines { "NDEBUG" }
       optimize "On"

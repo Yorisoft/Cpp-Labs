@@ -21,6 +21,7 @@ public:
     void setServiceCharge(T nServiceCharge);
     void setMonthlyOverdraft(T overdraftAmount);
     void setNumOfWithdrawals(T nNum);
+    void setNumOfDeposits(T nNum);
 
     //getters
     T getNumOfWithdrawals() const;
@@ -35,6 +36,7 @@ public:
     void deposit(T nDeposit);
     void withdraw(T nWithdraw);
     void calcInt();
+
     void monthlyProc();
 };
 

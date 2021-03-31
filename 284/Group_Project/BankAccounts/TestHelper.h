@@ -5,6 +5,8 @@
 #ifndef TEST_HELPER
 #define TEST_HELPER
 
+#include<vector>
+using namespace std;
 class TestHelper {
 
 private:
@@ -25,7 +27,6 @@ public:
  //getters
     char getTestUserChoice();
     int getAccountToPrint();
-    int getNextTransaction() ;
     double getAPR() const;
     long double getStatingBalance() const;
     long double getNewDeposit();

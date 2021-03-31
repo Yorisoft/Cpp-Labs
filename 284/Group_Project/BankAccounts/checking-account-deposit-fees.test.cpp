@@ -2,7 +2,8 @@
 // This program uses three classes to emulate a Savings and Checking account.
 // Prof Carmelito Moreno - CSC 284-H1
 // Yelsin Sepulveda
-
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"      /* Green */
 
 #include<cstdlib>
 #include<iostream>
@@ -119,8 +120,7 @@ int main() {
 
         cout << "Would you like to enter another transaction ? [Y/n] ";
         if (ENV_VARIABLE != "jenkins") {
-            cin.ignore(100, '\n');
-            getline(cin, choice);
+            cin >> choice; cin.ignore(100, '\n');
         } else {
             counter >= 6 ? choice = 'N' : choice = 'Y';
             counter++;
@@ -157,13 +157,16 @@ int getValidTransaction(string ENV_VARIABLE, TestHelper* TestHelperPtr, int &cou
     int usrInput;
 
     // Checking Deposit fee workflow
-    vector<int> workflowChoices = {1, 1, 1, 1, 2, 2, 5};
+    vector<int> workflowChoices = {1, 1, 1, 1, 1, 1, 5};
     
     cout << "What transaction would you like to perform ? (1 - 5) ";
     if (ENV_VARIABLE != "jenkins"){
         cin >> usrInput;
     } else {
+        cout << GREEN << "\n Setting next transaction to " << workflowChoices[counter]
+            << RESET << endl;
         usrInput = workflowChoices[counter];
+        return usrInput;
     }
 
     while ((isdigit(usrInput) || usrInput < 1 || usrInput > 5)) {
@@ -179,12 +182,12 @@ void checkingDeposit(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABLE, 
     cout << "How much would you like to deposit into your checking account ? ";
 
     if (ENV_VARIABLE != "jenkins"){
-        cin >> newDeposit;
+        cin >> newDeposit; cin.ignore(100, '\n');
     } else {
         newDeposit = TestHelperPtr->getNewDeposit();
     }
 
-    nCheckingAccountPtr->GenericAccount<long double>::deposit(newDeposit);
+    nCheckingAccountPtr->deposit(newDeposit);
     cout << "Finished transaction.." << endl;
 }
 
@@ -194,7 +197,7 @@ void checkingWithdrawal(CheckingAccount *nCheckingAccountPtr, string ENV_VARIABL
     try {
         cout << "How much would you like to withdraw from your checking account ? ";
         if (ENV_VARIABLE != "jenkins"){
-            cin >> newWithdrawal;
+            cin >> newWithdrawal; cin.ignore(100, '\n');
         } else {
             newWithdrawal = TestHelperPtr->getNewWithdrawal();
         }
@@ -215,7 +218,7 @@ void savingDeposit(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, Test
         cout << "How much would you like to deposit into your savings account ? ";
 
         if (ENV_VARIABLE != "jenkins"){
-            cin >> newDeposit;
+            cin >> newDeposit; cin.ignore(100, '\n');
         } else {
             newDeposit = TestHelperPtr->getNewDeposit();
         }
@@ -234,7 +237,7 @@ void savingWithdrawal(SavingsAccount *nSavingsAccountPtr, string ENV_VARIABLE, T
     try {
         cout << "How much would you like to withdraw from your savings account ? ";
         if (ENV_VARIABLE != "jenkins"){
-            cin >> newWithdrawal;
+            cin >> newWithdrawal; cin.ignore(100, '\n');
         } else {
             newWithdrawal = TestHelperPtr->getNewWithdrawal();
         }

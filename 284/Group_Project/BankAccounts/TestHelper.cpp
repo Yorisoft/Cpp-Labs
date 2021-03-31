@@ -1,12 +1,15 @@
 //
 // Created by Yelsin S on 3/28/2021.
 //
-
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"      /* Green */
 #include "TestHelper.h"
 #include<iostream>
 #include<random>
 
+
 using namespace std;
+
 
 
 //constructors
@@ -38,48 +41,24 @@ int TestHelper::getAccountToPrint(){
 }
 
 double TestHelper::getAPR() const {
-    cout << "\n Set annual interest to " << annualInterestRate << endl ;
+    cout << GREEN << "\n Setting annual interest to " << annualInterestRate  << RESET << endl ;
     return annualInterestRate;
 }
 
 long double TestHelper::getStatingBalance() const {
-    cout << "\n Set starting balance to " << startingBalance << endl ;
+    cout << GREEN << "\n Setting starting balance to " << startingBalance << RESET << endl ;
     return startingBalance;
 }
 
 long double TestHelper::getNewDeposit() {
     this->setNewDeposit();
 
-    cout << "\n Set deposit to " << newDeposit << endl ;
+    cout << GREEN << "\n Setting deposit to " << newDeposit << RESET << endl ;
     return newDeposit;
 }
 
 long double TestHelper::getNewWithdrawal() {
     this->setNewWithdrawal();
-    cout << "\n Set withdrawal to " << newWithdrawal << endl ;
+    cout << GREEN << "\n Setting withdrawal to " << newWithdrawal << RESET << endl ;
     return newWithdrawal;
-}
-
-int TestHelper::getNextTransaction() {
-    int nextTransaction;
-
-    if(numOfTransactions == 0 || numOfTransactions == 1) { //Deposit into Checking Account
-        nextTransaction = 1;
-        numOfTransactions+= 1;
-    }
-    if(numOfTransactions == 2 || numOfTransactions == 3) { //Withdraw from Checking Account
-        nextTransaction = 2;
-        numOfTransactions+= 1;
-    }
-    if(numOfTransactions == 4 || numOfTransactions == 5) { //Deposit into Checking Account
-        nextTransaction = 1;
-        numOfTransactions+= 1;
-    }
-    if(numOfTransactions == 6 || numOfTransactions == 7) { //Print out account
-        nextTransaction = 5;
-        numOfTransactions+= 1;
-    }
-
-    cout << "\n Set next transaction to " << nextTransaction << endl ;
-    return nextTransaction;
 }
