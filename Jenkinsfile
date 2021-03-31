@@ -27,15 +27,15 @@ node {
         }
 
         parallel(
-            "building-bankAccounts_deposit-fees-test": {
+            "Building_BankAccounts config=deposit-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh');
                     echo('Done building BankAccounts project files.. config=deposit-fees-test');
                 } 
-            } 
+            },
  
-            "building-bankAccounts_saving-withdrawal-fees-test": {
+            "Building_BankAccounts config=saving-withdrawal-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh');
@@ -45,15 +45,15 @@ node {
         )
 
         parallel(
-            "Running_BankAccounts_config=deposit-fees-test": {
+            "Running_BankAccounts config=deposit-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh');
                     echo('Done running BankAccounts project.. config=deposit-fees-test');
                 }
-            }
+            },
 
-            "Running_BankAccounts_config=saving-withdrawal-fees-test": {
+            "Running_BankAccounts config=saving-withdrawal-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh');
