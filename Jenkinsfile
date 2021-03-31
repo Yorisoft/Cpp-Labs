@@ -27,7 +27,7 @@ node {
         }
 
         parallel(
-            "Building BankAccounts config=deposit-fees-test": {
+            "Building_BankAccounts_config=deposit-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-build.test.sh');
@@ -35,7 +35,7 @@ node {
                 } 
             } 
  
-            "Building BankAccounts config=saving-withdrawal-fees-test": {
+            "Building_BankAccounts_config=saving-withdrawal-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-build.test.sh');
@@ -45,7 +45,7 @@ node {
         )
 
         parallel(
-            "Running BankAccounts config=deposit-fees-test": {
+            "Running_BankAccounts_config=deposit-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/deposit-fees/deposit-fees-run.test.sh');
@@ -53,7 +53,7 @@ node {
                 }
             }
 
-            "Running BankAccounts config=saving-withdrawal-fees-test": {
+            "Running_BankAccounts_config=saving-withdrawal-fees-test": {
                 image.inside(entrypoint) {
                     sh("chmod +x 284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh");
                     sh('284/Group_Project/BankAccounts/scripts/test/saving-withdrawal-fees/saving-withdrawal-fees-run.test.sh');
